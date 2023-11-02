@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: Özgür Ünal
+-- Engineer: 
 -- 
 -- Create Date: 11/01/2023 05:35:39 PM
 -- Design Name: 
@@ -8,7 +8,7 @@
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
--- Description: 
+-- Description:
 -- 
 -- Dependencies: 
 -- 
@@ -43,9 +43,7 @@ end entity decimation;
 
 architecture rtl of decimation is
 
-        signal      arst            : std_logic;
-        signal      rst             : std_logic;
-        signal      in_data_reg     : std_logic_vector(g_in_width-1 downto 0);
+        signal arst,rst : std_logic;
 
     begin
         
@@ -65,7 +63,9 @@ architecture rtl of decimation is
         end generate none;
         
         MainProcess : process(in_clk, arst)
+        
                 variable counter : std_logic := '0';
+                
             begin
                 if arst = g_rst_pol then
                     out_data        <= (others => '0');
@@ -84,7 +84,7 @@ architecture rtl of decimation is
                                     out_data    <= out_data;
                                     out_valid   <= '0';
                                 end if;
-                                counter     := not counter;
+                                counter := not counter;
                             else
                                 out_data        <= out_data;
                                 out_valid       <= out_valid;
